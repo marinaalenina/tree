@@ -3,14 +3,11 @@
 #include "Tree.h"
 using namespace std;
 
-struct AlphabeticOrder
-{
-	bool operator()(const string& s1, const string& s2, const int& i = 0)
-	{
+struct AlphabeticOrder {
+	bool operator()(const string& s1, const string& s2, const int& i = 0) {
 		if ((s1[i] == '\0') || (s1[i] < s2[i]))
 			return true;
-		else
-		{
+		else {
 			if (s1[i] > s2[i])
 				return false;
 			else
@@ -19,9 +16,7 @@ struct AlphabeticOrder
 	}
 };
 
-int main()
-{
-
+int main() {
 	Tree<int> t;
 	thread th1([&]() {
 		t.add(8);
@@ -63,6 +58,8 @@ int main()
 	th3.join(); th4.join();
 	cout << t2 << endl;
 
+	cout << (t2 == t2) << endl;
+
 	Tree<float> t3;
 	thread th5([&]() {
 		t3.add(4.9);
@@ -87,6 +84,6 @@ int main()
 		});
 	th5.join(); th6.join();
 	cout << t3 << endl;
-
+	cout << (t3 != t2);
 	return 0;
 }
